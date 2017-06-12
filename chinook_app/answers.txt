@@ -45,6 +45,9 @@ Artist.order(created_at: :asc).limit(2)
 
 Find the least expensive track that has the genre "Electronica/Dance".
 
-
+Genre.find_by(name: 'Electronica/Dance').id
+Track.where(genre_id: 15).minimum(:unit_price)
 
 Find all "MPEG autio file" tracks in the genre "Electronica/Dance".
+
+Track.where("media_type_id = ? AND genre_id = ?", MediaType.find_by(name: 'MPEG audio file'), Genre.find_by(name: 'Electronica/Dance'))
